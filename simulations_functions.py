@@ -86,6 +86,8 @@ def solve_constraints(A, B, bnds):
 
 
 #PLOT
+# When using only the true values of R there is no need to normalize
+# normalization (by the integral of Lambda) is needed when the mutation rate is unknown
 def plot(h, alpha, m, R, trueR, ndots, tau):
     R = R/sum(R)
     trueR = trueR/sum(trueR)
@@ -93,11 +95,11 @@ def plot(h, alpha, m, R, trueR, ndots, tau):
     y = nu_estim(x,  m, h, R)
     z = nu_estim(x,  m, h, trueR)
     v =  nu(x, alpha)
-    intv = np.sum(v)/ndots
+    intv = np.sum(v*x*x)/ndots
     v = v/intv
-    inty = np.sum(y)/ndots
+    inty = np.sum(y*x*x)/ndots
     y = y/inty
-    intz = np.sum(z)/ndots
+    intz = np.sum(z*x*x)/ndots
     z = z/intz
     plt.plot(x,v, label = 'True')
     plt.plot(x, y, label = 'Estimated')
