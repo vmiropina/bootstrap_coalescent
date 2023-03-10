@@ -1,6 +1,6 @@
 # bootstrap_coalescent
 
-This repository contains the code used in the artilce "A non-parametric estimator of the coagulation measure of Lambda-coalescents" [1], by Verónica Miró Pina, Emilien Joly and Arno Siri-Jégousse.
+This repository contains the code used in the artilce "Estimating the Lambda measure in multiple-merger coalescents" [1], by Verónica Miró Pina, Emilien Joly and Arno Siri-Jégousse.
 
 It uses msprime [2,3] to simulate the Site Frequency Spectrum of a population under a beta-coalescent model. 
 Then, the coagulation measure Lambda is estimated using the techniques suggested in [1].
