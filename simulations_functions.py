@@ -14,7 +14,7 @@ def SNP_matrix(m, L, alpha):
     mts = msprime.sim_mutations(tree, rate=1, discrete_genome=False)
     return mts.genotype_matrix()
 
-# weights matrix M, with weights bj
+# weights matrix M, with weights bj (to compute the weighted SFS)
 def weighted_sfs(K, m, j): 
     J = K.copy()
     alll = np.linspace(0, m-1,m, dtype = 'int')
@@ -60,6 +60,8 @@ def nu_1(x, alpha):
 
 nu = np.vectorize(nu_1)
 
+# Functions estimate the measure nu from a vector R of combinatorial coalescent rates (R are normally estimated by solving the lineaar system)
+# In Figure 1 of the paper, R are the real coalescent rates of beta coalescents)
 def nu_estim_1(x1, m, h, R):
     js = np.linspace(2, m, m-1)/m
     S = st.norm.pdf((x1-js)/h) * R
@@ -72,7 +74,7 @@ def nu_estim(X, m ,h, R):
     return 
 
 
-# Compute the real coalescent rates from beta-coalescents (r_mj's)
+# Compute the real coalescent rates from beta-coalescents (r_mj's) (for Figure 1)
 def coal_rates(b, k, alpha):
    return sp.binom(b, k)*sp.beta(k-alpha, b-k + alpha)/sp.beta(alpha, 2-alpha)
 
